@@ -15,9 +15,11 @@ app = Flask(__name__)
 @app.route("/")
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
-    global COUNTER
-    COUNTER += 1
-    return f"Hello World {COUNTER}"
+    with open("countval.txt", "r") as f:
+        counter = int(f.readline()) + 1
+    with open("countval.txt", "w") as f:
+        f.write(f"{counter}")
+    return f"Hello World {counter}"
 
 
 # main driver function
