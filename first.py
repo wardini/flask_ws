@@ -2,6 +2,8 @@
 # An object of Flask class is our WSGI application.
 from flask import Flask
 
+COUNTER: int = 0
+
 # Flask constructor takes the name of
 # current module (__name__) as argument.
 app = Flask(__name__)
@@ -13,7 +15,9 @@ app = Flask(__name__)
 @app.route("/")
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
-    return "Hello World"
+    global COUNTER
+    COUNTER += 1
+    return f"Hello World {COUNTER}"
 
 
 # main driver function
